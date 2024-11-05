@@ -23,6 +23,6 @@ echo "Region: $REGION"
 
 # Run terraform init and pass the variables to it
 terraform plan \
-  -var "project_id=$PROJECT_ID" 
+  -var "project_id=$PROJECT_ID" \ 
   -var "region=$REGION" \ 
   -var-file="var/terraform.tfvars"
