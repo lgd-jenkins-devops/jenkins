@@ -1,22 +1,27 @@
 #!/bin/bash
 
-# Obtener el ID del proyecto actual
+# Get the current project ID
 PROJECT_ID=$(gcloud config get-value project)
 
-# Verificar si se obtuvo un ID de proyecto
+# Check if the project ID was obtained
 if [ -z "$PROJECT_ID" ]; then
-  echo "No se pudo obtener el ID del proyecto. Asegúrate de que tienes un proyecto configurado en gcloud."
+  echo "Could not retrieve the project ID. Make sure you have a project set up in gcloud."
   exit 1
 fi
 
-# Obtener la región predeterminada (si no tiene una configurada, asignar una por defecto)
+# Get the default region (if not set, use a default one)
 REGION=$(gcloud config get-value compute/region)
 
 if [ -z "$REGION" ]; then
-  echo "No se configuró una región. Usando la región por defecto: us-central1"
-  REGION="us-central1"  # Región por defecto
+  echo "No region is set. Using the default region: us-central1"
+  REGION="us-central1"  # Default region
 fi
 
-# Mostrar el ID del proyecto y la región
-echo "ID del Proyecto: $PROJECT_ID"
-echo "Región: $REGION"
+# Display the values
+echo "Project ID: $PROJECT_ID"
+echo "Region: $REGION"
+
+# Run terraform init and pass the variables to it
+terraform init \
+  -var "project_id=$PROJECT_ID" \
+  -var "region=$REGION"
