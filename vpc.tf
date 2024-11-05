@@ -7,7 +7,7 @@ resource "google_compute_network" "vpc_network" {
 locals {
   subnet_names = {
     for subnet_key, subnet in var.subnets : 
-    subnet_key => "${subnet_key}-${subnet.region}"  # Name pattern: subnet-name-region
+    subnet_key => "${subnet_key}-${var.region}"  # Name pattern: subnet-name-region
   }
 }
 
