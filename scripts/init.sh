@@ -9,13 +9,12 @@ if [ -z "$PROJECT_ID" ]; then
   exit 1
 fi
 
-# Obtener la región predeterminada
+# Obtener la región predeterminada (si no tiene una configurada, asignar una por defecto)
 REGION=$(gcloud config get-value compute/region)
 
-# Verificar si se obtuvo una región
 if [ -z "$REGION" ]; then
-  echo "No se pudo obtener la región. Asegúrate de que tienes una región configurada en gcloud."
-  exit 1
+  echo "No se configuró una región. Usando la región por defecto: us-central1"
+  REGION="us-central1"  # Región por defecto
 fi
 
 # Mostrar el ID del proyecto y la región
