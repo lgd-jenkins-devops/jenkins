@@ -25,4 +25,4 @@ echo "Region: $REGION"
 terraform plan \
   -var "project_id=$PROJECT_ID" \ 
   -var "region=$REGION" \ 
-  -var-file="var/terraform.tfvars"
+  -var-file="vars/terraform.tfvars"
