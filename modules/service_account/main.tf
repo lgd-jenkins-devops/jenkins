@@ -1,7 +1,6 @@
 resource "google_service_account" "vm_service_account" {
   account_id   = var.account_id
   display_name = var.display_name
-  description = var.description
 }
 
 resource "google_project_iam_member" "vm_service_account_role" {
