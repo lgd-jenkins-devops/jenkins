@@ -1,14 +1,6 @@
 #!/bin/bash
 
-# Check if gcloud is authenticated
-ACCOUNT_ID=$(gcloud auth list --filter=status:ACTIVE --format="value(account)")
 
-if [ -z "$ACCOUNT_ID" ]; then
-  echo "No active Google Cloud account found. Please authenticate with gcloud."
-  exit 1
-else
-  echo "Active Google Cloud account: $ACCOUNT_ID"
-fi
 
 # Get the current project ID
 PROJECT_ID=$(gcloud config get-value project)
@@ -35,5 +27,4 @@ echo "Region: $REGION"
 terraform plan \
   -var "project_id=$PROJECT_ID" \
   -var "region=$REGION" \
-  -var "account_id=$ACCOUNT_ID" \
   -var-file="terraform.tfvars"
