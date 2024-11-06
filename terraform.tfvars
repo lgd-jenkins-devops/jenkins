@@ -18,3 +18,21 @@ vms = {
         type = "e2-small"
     }
 }
+
+firewall_rules = {
+    "allow-jenkins" : {
+        name = "allow-jenkins"
+        protocol = "tcp"
+        ports = ["8080"]
+        tags = ["allow-jenkins"]
+        type = "internal"
+    },
+    "allow-ssh" : {
+        name = "allow-ssh"
+        protocol = "tcp"
+        ports = ["22"]
+        tags = ["allow-ssh-jenkins"]
+        type = "external"
+        range = ["186.154.96.140/32"]
+    }
+}

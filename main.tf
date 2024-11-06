@@ -36,3 +36,9 @@ module "vm" {
   email = module.service_account["jenkins_vm"].service_account_email
 
 }
+
+module "firewall" {
+  source = "./modules/firewall"
+  rules = var.firewall_rules
+  network = module.network.vpc_network_name
+}

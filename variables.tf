@@ -23,3 +23,5 @@ variable "jenkins_role" {
 
 variable "vms" {
 }
+variable "firewall_rules"{
+}

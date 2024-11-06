@@ -1,7 +1,5 @@
 #!/bin/bash
 
-
-
 # Get the current project ID
 PROJECT_ID=$(gcloud config get-value project)
 
