@@ -59,6 +59,6 @@ resource "google_compute_instance" "vm" {
     enable_vtpm                 = true
   }
 
-  tags = ["allow-jenkins"]
+  tags = ["allow-jenkins","allow-ssh-jenkins"]
   zone = "us-central1-a"
 }
