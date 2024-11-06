@@ -2,7 +2,7 @@ vpc_name = "devops"
 
 subnets = {
     "public-subnet" : {
-        cidr_block : "10.2.0.0/16"
+        cidr_block : "10.2.0.0/24"
     },
 
     "private-subnet" : {
