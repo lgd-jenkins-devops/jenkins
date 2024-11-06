@@ -9,11 +9,3 @@ subnets = {
         cidr_block : "10.2.1.0/24"
     }
 }
-
-service_accounts =  {
-
-    "jenkins_vm" : {
-        display_name : "jenkins",
-        role : var.jenkins_role
-    }
-}

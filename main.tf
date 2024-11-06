@@ -1,3 +1,12 @@
+locals {
+  service_accounts = {
+    "jenkins_vm" = {
+      display_name = "jenkins"
+      role         = var.jenkins_role
+    }
+  }
+}
+
 module "network" {
   source = "./modules/network"
   project_id = var.project_id
@@ -9,7 +18,7 @@ module "network" {
 module "service_account" {
   source = "./modules/service_account"
 
-  for_each = var.service_accounts
+  for_each = locals.service_accounts
 
   account_id = var.account_id
   project_id = var.project_id
