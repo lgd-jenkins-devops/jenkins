@@ -15,5 +15,6 @@ account_id = "jenkins-vm"
 vms = {
     "jenkins" : {
         vm_name = "jenkins"
+        type = "e2-small"
     }
 }
