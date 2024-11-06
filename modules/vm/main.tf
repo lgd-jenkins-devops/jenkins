@@ -44,7 +44,7 @@ resource "google_compute_instance" "vm" {
   scheduling {
     automatic_restart   = false
     on_host_maintenance = "TERMINATE"
-    preemptible         = false
+    preemptible         = true
     provisioning_model  = "SPOT"
   }
 
