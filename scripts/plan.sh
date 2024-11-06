@@ -35,5 +35,5 @@ echo "Region: $REGION"
 terraform plan \
   -var "project_id=$PROJECT_ID" \
   -var "region=$REGION" \
-  -var "account_id=$ACCOUNT_ID" 
+  -var "account_id=$ACCOUNT_ID" \
   -var-file="terraform.tfvars"
