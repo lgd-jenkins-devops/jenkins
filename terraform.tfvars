@@ -10,7 +10,7 @@ subnets = {
     }
 }
 
-service_accounts : {
+service_accounts =  {
 
     "jenkins_vm" : {
         display_name : "jenkins",
