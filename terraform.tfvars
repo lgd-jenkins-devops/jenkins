@@ -14,6 +14,6 @@ account_id = "jenkins-vm"
 
 vms = {
     "jenkins" : {
-        vm_name
+        vm_name = "jenkins"
     }
 }
