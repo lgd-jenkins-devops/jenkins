@@ -18,7 +18,7 @@ module "network" {
 module "service_account" {
   source = "./modules/service_account"
 
-  for_each = locals.service_accounts
+  for_each = local.service_accounts
 
   account_id = var.account_id
   project_id = var.project_id
