@@ -33,6 +33,6 @@ firewall_rules = {
         ports = ["22"]
         tags = ["allow-ssh-jenkins"]
         type = "external"
-        range = ["186.154.96.140/32"]
+        range = ["35.235.240.0/20"]
     }
 }
