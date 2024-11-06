@@ -33,6 +33,6 @@ module "vm" {
   vm_name = var.vms["jenkins"].vm_name
   type = var.vms["jenkins"].type
   subnet_id = module.network.subnet_ids["private-subnet"]
-  email = module.service_account.service_account_email
+  email = module.service_account["jenkins_vm"].service_account_email
 
 }
