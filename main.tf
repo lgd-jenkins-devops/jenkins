@@ -27,7 +27,7 @@ module "service_account" {
   role = each.value.role
 }
 
-module vm" {
+module "vm" {
   
   source = "./modules/vm"
   vm_name = var.vms["jenkins"].vm_name
