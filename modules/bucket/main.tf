@@ -1,5 +1,13 @@
+resource "random_id" "suffix" {
+  byte_length = 4  
+}
+
+locals {
+  random_name = "${var.name}-${random_id.suffix.hex}"
+}
+
 resource "google_storage_bucket" "static-site" {
-  name          = var.name
+  name          = local.random_name
   location      = var.location
   force_destroy = true
 
