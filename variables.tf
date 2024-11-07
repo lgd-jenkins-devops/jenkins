@@ -28,3 +28,6 @@ variable "firewall_rules"{
 
 variable "ssl" {
 }
+
+variable "bucket" {
+}

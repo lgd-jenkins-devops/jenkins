@@ -42,3 +42,8 @@ ssl = {
     path_cert = "./certs/test.crt"
     path_key = "./certs/test.key"
 }
+
+bucket = {
+    name = "web-app"
+    location = "US"
+}
