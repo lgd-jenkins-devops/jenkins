@@ -26,6 +26,14 @@ firewall_rules = {
         ports = ["8080"]
         tags = ["allow-jenkins"]
         type = "internal"
+        range = ["130.211.0.0/22", "35.191.0.0/16", "35.235.240.0/20"]
+    },
+    "allow-jenkins" : {
+        name = "allow-jenkins"
+        protocol = "tcp"
+        ports = ["8080"]
+        tags = ["allow-jenkins"]
+        type = "external"
     },
     "allow-ssh" : {
         name = "allow-ssh"
