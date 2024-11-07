@@ -7,7 +7,7 @@ resource "google_compute_instance" "vm" {
     device_name = var.vm_name
 
     initialize_params {
-      image = "projects/rocky-linux-cloud/global/images/rocky-linux-8-optimized-gcp-v20241009"
+      image = "projects/desarrollo-323314/global/images/jenkins"
       size  = 20
       type  = "pd-standard"
     }
