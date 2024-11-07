@@ -60,7 +60,7 @@ resource "google_compute_global_forwarding_rule" "default" {
   ip_protocol           = "TCP"
   load_balancing_scheme = "EXTERNAL"
   port_range = "8080"
-  target     = google_compute_target_http_proxy.default.self_link
+  target     = google_compute_target_https_proxy.default.self_link
   ip_address = google_compute_global_address.default.address
 }
 
