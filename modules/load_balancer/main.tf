@@ -47,17 +47,17 @@ resource "google_compute_target_http_proxy" "default" {
 }
 
 # Reglas de Reenvío (Frontend)
-resource "google_compute_global_forwarding_rule" "default" {
-  name       = "http-forwarding-rule"
-  provider              = google
-  ip_protocol           = "TCP"
-  load_balancing_scheme = "EXTERNAL"
-  port_range = "8080"
-  target     = google_compute_target_http_proxy.default.self_link
-  ip_address = google_compute_global_address.default.address
-}
+#resource "google_compute_global_forwarding_rule" "default" {
+#  name       = "http-forwarding-rule"
+#  provider              = google
+#  ip_protocol           = "TCP"
+#  load_balancing_scheme = "EXTERNAL"
+#  port_range = "8080"
+#  target     = google_compute_target_http_proxy.default.self_link
+#  ip_address = google_compute_global_address.default.address
+#}
 
 # Dirección IP Global
-resource "google_compute_global_address" "default" {
-  name = "global-ip"
-}
+#resource "google_compute_global_address" "default" {
+#  name = "global-ip"
+#}
