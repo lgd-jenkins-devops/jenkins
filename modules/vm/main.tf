@@ -26,7 +26,7 @@ resource "google_compute_instance" "vm" {
   machine_type = var.type
 
   metadata = {
-    startup-script = "sudo yum install -y  wget\nsudo wget -O /etc/yum.repos.d/jenkins.repo \\\n    https://pkg.jenkins.io/redhat-stable/jenkins.repo\nsudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key\nsudo yum upgrade -y\n# Add required dependencies for the jenkins package\nsudo yum install  -y  fontconfig java-17-openjdk \nsudo yum install jenkins\nsudo systemctl daemon-reload"
+    startup-script = "sudo yum install -y  wget\nsudo wget -O /etc/yum.repos.d/jenkins.repo \\\n    https://pkg.jenkins.io/redhat-stable/jenkins.repo\nsudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key\nsudo yum upgrade -y\n# Add required dependencies for the jenkins package\nsudo yum install  -y  fontconfig java-17-openjdk \nsudo yum install -y jenkins\nsudo systemctl daemon-reload"
   }
 
   name = var.vm_name
