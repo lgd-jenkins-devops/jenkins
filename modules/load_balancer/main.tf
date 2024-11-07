@@ -41,8 +41,11 @@ resource "google_compute_url_map" "default" {
 # Reglas de Reenvío (Frontend)
 resource "google_compute_global_forwarding_rule" "default" {
   name       = "http-forwarding-rule"
-  target     = google_compute_url_map.default.self_link
+  provider              = google
+  ip_protocol           = "TCP"
+  load_balancing_scheme = "EXTERNAL"
   port_range = "8080"
+  target     = google_compute_url_map.default.self_link
   ip_address = google_compute_global_address.default.address
 }
 
