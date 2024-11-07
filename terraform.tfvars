@@ -45,5 +45,5 @@ ssl = {
 
 bucket = {
     name = "web-app"
-    location = "US"
+    location = "us-central1"
 }
