@@ -42,3 +42,15 @@ module "firewall" {
   rules = var.firewall_rules
   network = module.network.vpc_network_name
 }
+
+module "firewall" {
+  source = "./modules/firewall"
+  rules = var.firewall_rules
+  network = module.network.vpc_network_name
+}
+
+module "load-balance" {
+  source = "./modules/load_balancer"
+  network = module.network.vpc_network_name
+  jenkins_link = module.vm.vm_link
+}
