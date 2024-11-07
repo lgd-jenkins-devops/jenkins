@@ -36,10 +36,10 @@ resource "google_compute_backend_service" "default" {
 }
 
 # Crear el URL Map
-#resource "google_compute_url_map" "default" {
-#  name            = "url-map"
-#  default_service = google_compute_backend_service.default.self_link
-#}
+resource "google_compute_url_map" "default" {
+  name            = "url-map"
+  default_service = google_compute_backend_service.default.self_link
+}
 
 # HTTP target proxy
 #resource "google_compute_target_http_proxy" "default" {
