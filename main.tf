@@ -43,11 +43,6 @@ module "firewall" {
   network = module.network.vpc_network_name
 }
 
-module "firewall" {
-  source = "./modules/firewall"
-  rules = var.firewall_rules
-  network = module.network.vpc_network_name
-}
 
 module "load-balance" {
   source = "./modules/load_balancer"
