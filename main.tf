@@ -44,8 +44,9 @@ module "firewall" {
 }
 
 
-module "load-balance" {
-  source = "./modules/load_balancer"
-  network = module.network.vpc_network_id
-  jenkins_link = module.vm.vm_link
-}
+#module "load-balance" {
+#  source = "./modules/load_balancer"
+#  network = module.network.vpc_network_id
+#  jenkins_id = module.vm.vm_id
+#  depends_on = [module.vm]
+#}

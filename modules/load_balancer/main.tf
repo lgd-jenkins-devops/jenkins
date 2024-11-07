@@ -2,7 +2,9 @@ resource "google_compute_instance_group" "default" {
   name        = "instance-group"
   zone        = var.zone
   network     = var.network
-  instances   = [var.jenkins_link]
+  instances   = [
+    var.jenkins_id
+  ]
   
   named_port {
     name = "http"
@@ -21,7 +23,6 @@ resource "google_compute_http_health_check" "default" {
   port = 8080
 }
 
-# Backend Service (Conectado al Health Check)
 resource "google_compute_backend_service" "default" {
   name            = "backend-service"
   backend {

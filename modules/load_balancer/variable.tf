@@ -5,5 +5,5 @@ variable "zone" {
 variable "network" {
 }
 
-variable "jenkins_link" {
+variable "jenkins_id" {
 }
