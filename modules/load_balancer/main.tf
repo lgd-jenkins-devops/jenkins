@@ -25,7 +25,7 @@ resource "google_compute_http_health_check" "default" {
 # Backend Service (Conectado al Health Check)
 resource "google_compute_backend_service" "default" {
   name            = "backend-service"
-  backends {
+  backend {
     group = google_compute_instance_group.default.self_link
   }
   health_checks = [google_compute_http_health_check.default.self_link]
