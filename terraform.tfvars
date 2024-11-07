@@ -37,3 +37,8 @@ firewall_rules = {
         range = ["35.235.240.0/20"]
     }
 }
+
+ssl = {
+    path_cert = "./certs/test.crt"
+    path_key = "./certs/test.key"
+}

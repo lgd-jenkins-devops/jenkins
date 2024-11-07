@@ -3,7 +3,7 @@ SCRIPT_DIR=scripts
 CERT_SCRIPT=$(SCRIPT_DIR)/generate_ssl_certificate.sh
 
 # Default domain for certificate generation
-DOMAIN=test.dev
+DOMAIN=test
 
 # Target to generate the SSL certificate
 generate-cert:

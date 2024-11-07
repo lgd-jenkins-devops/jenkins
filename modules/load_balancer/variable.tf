@@ -7,3 +7,9 @@ variable "network" {
 
 variable "jenkins_id" {
 }
+
+variable "path_key" {
+}
+
+variable "path_cert" {
+}

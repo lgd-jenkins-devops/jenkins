@@ -36,30 +36,40 @@ resource "google_compute_backend_service" "default" {
 }
 
 # Crear el URL Map
-resource "google_compute_url_map" "default" {
-  name            = "url-map"
-  default_service = google_compute_backend_service.default.self_link
-}
+#resource "google_compute_url_map" "default" {
+#  name            = "url-map"
+#  default_service = google_compute_backend_service.default.self_link
+#}
 
 # HTTP target proxy
-resource "google_compute_target_http_proxy" "default" {
-  name     = "l7-gilb-target-http-proxy"
-  provider = google
-  url_map  = google_compute_url_map.default.id
-}
+#resource "google_compute_target_http_proxy" "default" {
+#  name     = "l7-gilb-target-http-proxy"
+#  provider = google
+#  url_map  = google_compute_url_map.default.id
+#}
 
 # Reglas de Reenvío (Frontend)
-resource "google_compute_global_forwarding_rule" "default" {
-  name       = "http-forwarding-rule"
-  provider              = google
-  ip_protocol           = "TCP"
-  load_balancing_scheme = "EXTERNAL"
-  port_range = "8080"
-  target     = google_compute_target_http_proxy.default.self_link
-  ip_address = google_compute_global_address.default.address
-}
+#resource "google_compute_global_forwarding_rule" "default" {
+#  name       = "http-forwarding-rule"
+#  provider              = google
+#  ip_protocol           = "TCP"
+#  load_balancing_scheme = "EXTERNAL"
+#  port_range = "8080"
+#  target     = google_compute_target_http_proxy.default.self_link
+#  ip_address = google_compute_global_address.default.address
+#}
 
 # Dirección IP Global
-resource "google_compute_global_address" "default" {
-  name = "global-ip"
+#resource "google_compute_global_address" "default" {
+#  name = "global-ip"
+#}
+
+resource "google_compute_ssl_certificate" "default" {
+  name_prefix = "my-certificate-"
+  private_key = file(var.path_key)
+  certificate = file(var.path_cert)
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }

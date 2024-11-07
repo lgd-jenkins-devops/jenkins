@@ -25,3 +25,6 @@ variable "vms" {
 }
 variable "firewall_rules"{
 }
+
+variable "ssl" {
+}
