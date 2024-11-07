@@ -1,4 +1,3 @@
-# Crear un grupo de instancias para los backends
 resource "google_compute_instance_group" "default" {
   name        = "instance-group"
   zone        = var.zone
