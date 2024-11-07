@@ -20,13 +20,6 @@ vms = {
 }
 
 firewall_rules = {
-    "allow-jenkins" : {
-        name = "allow-jenkins"
-        protocol = "tcp"
-        ports = ["8080"]
-        tags = ["allow-jenkins"]
-        type = "internal"
-    },
     "allow-jenkins-lb" : {
         name = "allow-jenkins-lb"
         protocol = "tcp"
