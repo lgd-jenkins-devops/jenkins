@@ -6,12 +6,15 @@ variable "network" {
 }
 
 variable "jenkins_id" {
+    default = ""
 }
 
 variable "path_key" {
+    default = ""
 }
 
 variable "path_cert" {
+    default = ""
 }
 
 variable "type" {
@@ -19,4 +22,5 @@ variable "type" {
 }
 
 variable "bucket_name"{
+    default = ""
 }
