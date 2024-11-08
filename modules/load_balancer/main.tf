@@ -49,8 +49,7 @@ resource "google_compute_backend_service" "default" {
 resource "google_compute_backend_bucket" "static_content_backend" {
   name             = "static-website-backend"
   bucket_name      = var.bucket_name
-  enable_cdn       = true
-  custom_request_headers = ["X-Request-Id"]
+  enable_cdn       = false
 }
 
 
