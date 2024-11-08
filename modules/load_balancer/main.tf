@@ -19,7 +19,7 @@ resource "google_compute_instance_group" "default" {
 
 # Crear un Health Check para el balanceador de carga
 resource "google_compute_health_check" "default" {
-  for_each = var.type == "http" || var.type == "https" ? [1] : []
+  for_each = var.type == "http" || var.type == "https" ? { "enabled" = "true" } : {}
   name               = "http-health-check"
 
   check_interval_sec = 5
@@ -32,12 +32,12 @@ resource "google_compute_health_check" "default" {
 }
 
 resource "google_compute_backend_service" "default" {
-  for_each = var.type == "http" || var.type == "https" ? [1] : []
+  for_each = var.type == "http" || var.type == "https" ? { "enabled" = "true" } : {}
   name            = "backend-service"
   backend {
-    group = google_compute_instance_group.default[0].self_link
+    group = google_compute_instance_group.default["enabled"].self_link
   }
-  health_checks = [google_compute_health_check.default[0].self_link]
+  health_checks = [google_compute_health_check.default["enabled"].self_link]
   protocol      = "HTTP"
   port_name     = "http"
 }
@@ -47,7 +47,7 @@ resource "google_compute_backend_service" "default" {
 #### Backend bucket
 
 resource "google_compute_backend_bucket" "static_content_backend" {
-  for_each = var.type == "http-bucket" || var.type == "https-bucket" ? [1] : []
+  for_each = var.type == "http-bucket" || var.type == "https-bucket" ? { "enabled" = "true" } : {}
   name             = "static-website-backend"
   bucket_name      = var.bucket_name
   enable_cdn       = false
@@ -57,7 +57,7 @@ resource "google_compute_backend_bucket" "static_content_backend" {
 #### http config
 # HTTP target proxy
 resource "google_compute_target_http_proxy" "default" {
-  for_each = var.type == "http" || var.type == "http-bucket" ? [1] : []
+  for_each = var.type == "http" || var.type == "http-bucket" ? { "enabled" = "true" } : {}
   name     = "l7-gilb-target-http-proxy"
   provider = google
   url_map  = google_compute_url_map.default.id
@@ -66,7 +66,7 @@ resource "google_compute_target_http_proxy" "default" {
 #### https config
 
 resource "google_compute_ssl_certificate" "default" {
-  for_each = var.type == "https" || var.type == "https-bucket" ? [1] : []
+  for_each = var.type == "https" || var.type == "https-bucket" ? { "enabled" = "true" } : {}
   name_prefix = "my-certificate-"
   private_key = file(var.path_key)
   certificate = file(var.path_cert)
@@ -77,10 +77,10 @@ resource "google_compute_ssl_certificate" "default" {
 }
 
 resource "google_compute_target_https_proxy" "default" {
-  for_each = var.type == "https" || var.type == "https-bucket" ? [1] : []
+  for_each = var.type == "https" || var.type == "https-bucket" ? { "enabled" = "true" } : {}
   name             = "test-proxy"
   url_map          = google_compute_url_map.default.id
-  ssl_certificates = [google_compute_ssl_certificate.default[0].id]
+  ssl_certificates = [google_compute_ssl_certificate.default["enabled"].id]
 }
 
 
@@ -88,7 +88,7 @@ resource "google_compute_target_https_proxy" "default" {
 # Crear el URL Map
 resource "google_compute_url_map" "default" {
   name            = "url-map"
-  default_service =  var.type == "https" || var.type == "http" ? google_compute_backend_service.default[0].self_link : google_compute_backend_bucket[0].static_content_backend
+  default_service =  var.type == "https" || var.type == "http" ? google_compute_backend_service.default[0].self_link : google_compute_backend_bucket["enabled"].static_content_backend
 }
 
 
@@ -101,7 +101,7 @@ resource "google_compute_global_forwarding_rule" "default" {
   ip_protocol           = "TCP"
   load_balancing_scheme = "EXTERNAL"
   port_range = var.type == "https" || var.type == "https-bucket" ? "443" : "80"
-  target     = var.type == "https" || var.type == "https-bucket" ? google_compute_target_https_proxy.default[0].self_link : google_compute_target_http_proxy.default[0].self_link
+  target     = var.type == "https" || var.type == "https-bucket" ? google_compute_target_https_proxy.default[0].self_link : google_compute_target_http_proxy.default["enabled"].self_link
   ip_address = google_compute_global_address.default.address
 }
 
