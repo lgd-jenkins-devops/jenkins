@@ -47,7 +47,7 @@ resource "google_compute_backend_service" "default" {
 #### Backend bucket
 
 resource "google_compute_backend_bucket" "static_content_backend" {
-  var.type == "http-bucket" || var.type == "https-bucket" ? [1] : []
+  for_each = var.type == "http-bucket" || var.type == "https-bucket" ? [1] : []
   name             = "static-website-backend"
   bucket_name      = var.bucket_name
   enable_cdn       = false
