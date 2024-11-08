@@ -45,7 +45,7 @@ module "firewall" {
 
 
 module "load-balance" {
-  source = "git@github.com:lgd-jenkins-devops/terraform-modules.git//load-balance?ref=v1.0.0"
+  source = "git@github.com:lgd-jenkins-devops/terraform-modules.git//load_balancer?ref=v1.0.0"
   network = module.network.vpc_network_id
   jenkins_id = module.vm.vm_id
   depends_on = [module.vm]
