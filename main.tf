@@ -57,4 +57,5 @@ module "bucket" {
   source = "./modules/bucket"
   name = var.bucket.name
   location = var.bucket.location
+  project_id = var.project_id
 }

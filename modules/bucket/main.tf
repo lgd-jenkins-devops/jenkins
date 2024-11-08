@@ -1,9 +1,6 @@
-resource "random_id" "suffix" {
-  byte_length = 4  
-}
 
 locals {
-  random_name = "${var.name}-${random_id.suffix.hex}"
+  random_name = "${var.name}-${var.project_id}"
 }
 
 resource "google_storage_bucket" "static-site" {
@@ -23,5 +20,4 @@ resource "google_storage_bucket" "static-site" {
     response_header = ["*"]
     max_age_seconds = 3600
   }
-  public_access_prevention = "enforced"
 }
