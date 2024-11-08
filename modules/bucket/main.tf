@@ -23,7 +23,7 @@ resource "google_storage_bucket" "static-site" {
 }
 
 resource "google_storage_bucket_iam_member" "public_access" {
-  bucket = google_storage_bucket.static_website.name
+  bucket = google_storage_bucket.static-site.name
   role   = "roles/storage.objectViewer"
   member = "allUsers"
 }
