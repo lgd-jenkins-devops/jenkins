@@ -13,21 +13,3 @@ variable "vpc_name" {
 
 variable "subnets" {
 }
-
-variable "account_id" {
-}
-
-variable "jenkins_role" {
-  default     =  "roles/compute.admin"
-}
-
-variable "vms" {
-}
-variable "firewall_rules"{
-}
-
-variable "ssl" {
-}
-
-variable "bucket" {
-}

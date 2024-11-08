@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+
 # Get the current project ID
 PROJECT_ID=$(gcloud config get-value project)
 
@@ -22,7 +24,7 @@ echo "Project ID: $PROJECT_ID"
 echo "Region: $REGION"
 
 # Run terraform plan and pass the variables to it
-terraform plan \
+terraform apply \
   -var "project_id=$PROJECT_ID" \
   -var "region=$REGION" \
   -var-file="terraform.tfvars"
