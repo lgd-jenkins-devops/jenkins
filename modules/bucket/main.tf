@@ -21,3 +21,9 @@ resource "google_storage_bucket" "static-site" {
     max_age_seconds = 3600
   }
 }
+
+resource "google_storage_bucket_iam_member" "public_access" {
+  bucket = google_storage_bucket.static_website.name
+  role   = "roles/storage.objectViewer"
+  member = "allUsers"
+}
