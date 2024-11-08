@@ -1,10 +1,6 @@
 vpc_name = "devops"
 
 subnets = {
-    "public-subnet" : {
-        cidr_block : "10.10.0.0/24"
-    },
-
     "private-subnet" : {
         cidr_block : "10.10.2.0/24"
     }
@@ -41,9 +37,4 @@ firewall_rules = {
 ssl = {
     path_cert = "./certs/test.crt"
     path_key = "./certs/test.key"
-}
-
-bucket = {
-    name = "web-app"
-    location = "us-central1"
 }
