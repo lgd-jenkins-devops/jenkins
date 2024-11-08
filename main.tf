@@ -29,7 +29,7 @@ module "service_account" {
 
 module "vm" {
   
-  source = ""git@github.com:lgd-jenkins-devops/terraform-modules.git//vm?ref=v1.0.0""
+  source = "git@github.com:lgd-jenkins-devops/terraform-modules.git//vm?ref=v1.0.0"
   vm_name = var.vms["jenkins"].vm_name
   type = var.vms["jenkins"].type
   subnet_id = module.network.subnet_ids["private-subnet"]
@@ -38,14 +38,14 @@ module "vm" {
 }
 
 module "firewall" {
-  source = ""git@github.com:lgd-jenkins-devops/terraform-modules.git//firewall?ref=v1.0.0""
+  source = "git@github.com:lgd-jenkins-devops/terraform-modules.git//firewall?ref=v1.0.0"
   rules = var.firewall_rules
   network = module.network.vpc_network_name
 }
 
 
 module "load-balance" {
-  source = ""git@github.com:lgd-jenkins-devops/terraform-modules.git//load-balance?ref=v1.0.0""
+  source = "git@github.com:lgd-jenkins-devops/terraform-modules.git//load-balance?ref=v1.0.0"
   network = module.network.vpc_network_id
   jenkins_id = module.vm.vm_id
   depends_on = [module.vm]
