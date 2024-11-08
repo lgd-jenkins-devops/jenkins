@@ -101,7 +101,7 @@ resource "google_compute_global_forwarding_rule" "default" {
   ip_protocol           = "TCP"
   load_balancing_scheme = "EXTERNAL"
   port_range = var.type == "https" || var.type == "https-bucket" ? "443" : "80"
-  target     = var.type == "https" || var.type == "https-bucket" ? google_compute_target_https_proxy.default[0].self_link : google_compute_target_http_proxy.default["enabled"].self_link
+  target     = var.type == "https" || var.type == "https-bucket" ? google_compute_target_https_proxy.default["enabled"].self_link : google_compute_target_http_proxy.default["enabled"].self_link
   ip_address = google_compute_global_address.default.address
 }
 
