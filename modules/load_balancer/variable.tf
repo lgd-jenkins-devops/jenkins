@@ -13,3 +13,10 @@ variable "path_key" {
 
 variable "path_cert" {
 }
+
+variable "lb_type" {
+    default = "https"
+}
+
+variable "bucket_name"{
+}

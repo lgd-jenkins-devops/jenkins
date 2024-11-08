@@ -59,3 +59,11 @@ module "bucket" {
   location = var.bucket.location
   project_id = var.project_id
 }
+
+module "bucket-load-balance" {
+  source = "./modules/load_balancer"
+  network = module.network.vpc_network_id
+  depends_on = [module.bucket]
+  type = "http-bucket"
+  bucket_name = module.bucket.bucket_name
+}

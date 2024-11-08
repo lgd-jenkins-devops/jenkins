@@ -1,4 +1,8 @@
+### backend GCE
+
 resource "google_compute_instance_group" "default" {
+  for_each = var.type == "http" || var.type == "https" ? { "enabled" = "true" } : {}
+
   name        = "instance-group"
   zone        = var.zone
   network     = var.network
@@ -10,10 +14,12 @@ resource "google_compute_instance_group" "default" {
     name = "http"
     port = "8080"
   }
+
 }
 
 # Crear un Health Check para el balanceador de carga
 resource "google_compute_health_check" "default" {
+  for_each = var.type == "http" || var.type == "https" ? { "enabled" = "true" } : {}
   name               = "http-health-check"
 
   check_interval_sec = 5
@@ -26,6 +32,7 @@ resource "google_compute_health_check" "default" {
 }
 
 resource "google_compute_backend_service" "default" {
+  for_each = var.type == "http" || var.type == "https" ? { "enabled" = "true" } : {}
   name            = "backend-service"
   backend {
     group = google_compute_instance_group.default.self_link
@@ -35,39 +42,28 @@ resource "google_compute_backend_service" "default" {
   port_name     = "http"
 }
 
-# Crear el URL Map
-resource "google_compute_url_map" "default" {
-  name            = "url-map"
-  default_service = google_compute_backend_service.default.self_link
+
+
+#### Backend bucket
+
+resource "google_compute_backend_bucket" "static_content_backend" {
+  name             = "static-website-backend"
+  bucket_name      = var.bucket_name
+  enable_cdn       = true
+  custom_request_headers = ["X-Request-Id"]
 }
 
-resource "google_compute_target_https_proxy" "default" {
-  name             = "test-proxy"
-  url_map          = google_compute_url_map.default.id
-  ssl_certificates = [google_compute_ssl_certificate.default.id]
-}
+
+#### http config
 # HTTP target proxy
-#resource "google_compute_target_http_proxy" "default" {
-#  name     = "l7-gilb-target-http-proxy"
-#  provider = google
-#  url_map  = google_compute_url_map.default.id
-#}
-
-# Reglas de Reenvío (Frontend)
-resource "google_compute_global_forwarding_rule" "default" {
-  name       = "http-forwarding-rule"
-  provider              = google
-  ip_protocol           = "TCP"
-  load_balancing_scheme = "EXTERNAL"
-  port_range = "8080"
-  target     = google_compute_target_https_proxy.default.self_link
-  ip_address = google_compute_global_address.default.address
+resource "google_compute_target_http_proxy" "default" {
+  for_each = var.type == "http" || var.type == "http-bucket" ? { "enabled" = "true" } : {}
+  name     = "l7-gilb-target-http-proxy"
+  provider = google
+  url_map  = google_compute_url_map.default.id
 }
 
-# Dirección IP Global
-resource "google_compute_global_address" "default" {
-  name = "global-ip"
-}
+#### https config
 
 resource "google_compute_ssl_certificate" "default" {
   name_prefix = "my-certificate-"
@@ -77,4 +73,38 @@ resource "google_compute_ssl_certificate" "default" {
   lifecycle {
     create_before_destroy = true
   }
+}
+
+resource "google_compute_target_https_proxy" "default" {
+  for_each = var.type == "https" || var.type == "https-bucket" ? { "enabled" = "true" } : {}
+  name             = "test-proxy"
+  url_map          = google_compute_url_map.default.id
+  ssl_certificates = [google_compute_ssl_certificate.default.id]
+}
+
+
+#### General config
+# Crear el URL Map
+resource "google_compute_url_map" "default" {
+  name            = "url-map"
+  default_service =  var.type == "https" || var.type == "http" ? google_compute_backend_service.default.self_link : google_compute_backend_bucket.static_content_backend
+}
+
+
+
+
+# Reglas de Reenvío (Frontend)
+resource "google_compute_global_forwarding_rule" "default" {
+  name       = "http-forwarding-rule"
+  provider              = google
+  ip_protocol           = "TCP"
+  load_balancing_scheme = "EXTERNAL"
+  port_range = var.type == "https" || var.type == "https-bucket" ? "443" : "80"
+  target     = var.type == "https" || var.type == "https-bucket" ? google_compute_target_https_proxy.default.self_link : google_compute_target_http_proxy.default.self_link
+  ip_address = google_compute_global_address.default.address
+}
+
+# Dirección IP Global
+resource "google_compute_global_address" "default" {
+  name = "global-ip"
 }
