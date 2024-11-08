@@ -3,6 +3,7 @@ variable "zone" {
 }
 
 variable "network" {
+    default = ""
 }
 
 variable "jenkins_id" {
