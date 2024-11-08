@@ -14,7 +14,7 @@ variable "path_key" {
 variable "path_cert" {
 }
 
-variable "lb_type" {
+variable "type" {
     default = "https"
 }
 
