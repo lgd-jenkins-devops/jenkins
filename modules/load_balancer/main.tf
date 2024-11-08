@@ -88,7 +88,7 @@ resource "google_compute_target_https_proxy" "default" {
 # Crear el URL Map
 resource "google_compute_url_map" "default" {
   name            = "url-map"
-  default_service =  var.type == "https" || var.type == "http" ? google_compute_backend_service.default[0].self_link : google_compute_backend_bucket["enabled"].static_content_backend
+  default_service =  var.type == "https" || var.type == "http" ? google_compute_backend_service.default["enabled"].self_link : google_compute_backend_bucket.static_content_backend["enabled"].id
 }
 
 
