@@ -8,6 +8,7 @@ subnets = {
 
 account_id = "jenkins-vm"
 
+
 vms = {
     "jenkins" : {
         vm_name = "jenkins"
@@ -38,3 +39,21 @@ ssl = {
     path_cert = "./certs/test.crt"
     path_key = "./certs/test.key"
 }
+
+vm_disk = {
+    auto_delete = false
+    source_disk = "projects/desarrollo-323314/zones/us-central1-a/disks/jenkins"
+}
+
+scopes = [
+    "https://www.googleapis.com/auth/devstorage.read_only", 
+    "https://www.googleapis.com/auth/logging.write", 
+    "https://www.googleapis.com/auth/monitoring.write", 
+    "https://www.googleapis.com/auth/service.management.readonly", 
+    "https://www.googleapis.com/auth/servicecontrol", 
+    "https://www.googleapis.com/auth/trace.append"
+]
+
+zone = "us-central1-a"
+
+tags = ["allow-jenkins","allow-ssh-jenkins"]

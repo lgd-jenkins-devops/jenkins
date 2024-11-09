@@ -28,3 +28,15 @@ variable "firewall_rules"{
 
 variable "ssl" {
 }
+
+variable "vm_disk" {
+}
+
+variable "scopes" {
+}
+
+variable "zone" {
+}
+
+variable "tags" {
+}
