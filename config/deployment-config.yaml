@@ -1,9 +1,9 @@
 imports:
-  - path: "config/bucket-template.jinja"
+  - path: "bucket-template.jinja"
 
 resources:
   - name: "jenkins-backend"
-    type: "config/bucket-template.jinja"
+    type: "bucket-template.jinja"
     properties:
       bucket_name: "jenkins-backend"
       region: "us-central1"
