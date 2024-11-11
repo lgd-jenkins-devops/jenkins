@@ -18,7 +18,7 @@ clean:
 # Backend
 
 CONFIG_DIR := config
-TEMPLATE_FILE := $(CONFIG_DIR)/bucket-template.jinja
+TEMPLATE_FILE := $(CONFIG_DIR)/bucket-template.j2
 CONFIG_FILE := $(CONFIG_DIR)/deployment-config.yaml
 
 DEPLOYMENT_NAME := jenkins-backend
