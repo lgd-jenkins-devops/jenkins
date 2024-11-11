@@ -1,5 +1,5 @@
 imports:
-  - path: bucket-template.jinja
+  - path: config/bucket-template.jinja
 
 resources:
   - name: "jenkins-backend"
