@@ -1,5 +1,0 @@
-variable "rules" {
-}
-
-variable "network" {
-}
