@@ -21,7 +21,7 @@ CONFIG_DIR := config
 TEMPLATE_FILE := $(CONFIG_DIR)/bucket-template.jinja
 CONFIG_FILE := $(CONFIG_DIR)/deployment-config.yaml
 
-DEPLOYMENT_NAME := jenkins-Backend
+DEPLOYMENT_NAME := jenkins-backend
 
 
 deploy-backend:
