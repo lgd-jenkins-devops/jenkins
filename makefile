@@ -14,3 +14,15 @@ generate-cert:
 clean:
 	@echo "Cleaning up generated certificates..."
 	rm -rf certs
+
+# Backend
+
+CONFIG_DIR := config
+TEMPLATE_FILE := $(CONFIG_DIR)/bucket-template.jinja
+CONFIG_FILE := $(CONFIG_DIR)/deployment-config.yaml
+
+DEPLOYMENT_NAME := jenkins-Backend
+
+
+deploy-backend:
+	@gcloud deployment-manager deployments create $(DEPLOYMENT_NAME) --config $(CONFIG_FILE)

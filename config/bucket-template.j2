@@ -1,0 +1,9 @@
+resources:
+  - name: {{ bucket_name }}
+    type: storage.v1.bucket
+    properties:
+      location: {{ region }}
+      storageClass: {{ storage_class }}
+      versioning:
+        enabled: true
+      uniformBucketLevelAccess: true

@@ -1,0 +1,10 @@
+imports:
+  - path: bucket-template.j2
+
+resources:
+  - name: jenkins-backend
+    type: bucket-template.jinja
+    properties:
+      bucket_name: "jenkins-backend"
+      region: "us-central1"
+      storage_class: "STANDARD"
