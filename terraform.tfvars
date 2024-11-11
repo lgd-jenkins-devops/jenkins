@@ -61,3 +61,8 @@ scopes = [
 zone = "us-central1-a"
 
 tags = ["allow-jenkins","allow-ssh-jenkins"]
+
+bucket = {
+    name = "web-app"
+    location = "us-central1"
+}

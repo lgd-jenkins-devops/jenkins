@@ -40,3 +40,6 @@ variable "zone" {
 
 variable "tags" {
 }
+
+variable "bucket" {
+}
