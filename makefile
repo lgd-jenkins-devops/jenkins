@@ -27,5 +27,5 @@ DEPLOYMENT_NAME := jenkins-backend
 deploy-backend:
 	@gcloud deployment-manager deployments create $(DEPLOYMENT_NAME) --config $(CONFIG_FILE)
 
-delete:
+delete-deploy:
 	@gcloud deployment-manager deployments delete $(DEPLOYMENT_NAME) --quiet
