@@ -29,5 +29,14 @@ variable "firewall_rules"{
 variable "ssl" {
 }
 
-variable "bucket" {
+variable "vm_disk" {
+}
+
+variable "scopes" {
+}
+
+variable "zone" {
+}
+
+variable "tags" {
 }
