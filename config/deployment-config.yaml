@@ -3,7 +3,7 @@ imports:
 
 resources:
   - name: "jenkins-backend"
-    type: "bucket-template.jinja"
+    type: "config/bucket-template.jinja"
     properties:
       bucket_name: "jenkins-backend"
       region: "us-central1"
